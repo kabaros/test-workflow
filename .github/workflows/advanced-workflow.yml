@@ -1,0 +1,23 @@
+name: test-and-release
+
+on: push
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    # Cancel previous runs if not on a release branch
+    cancel-in-progress: ${{ !contains(fromJSON('["refs/heads/master", "refs/heads/main"]'), github.ref) }}
+
+jobs:
+    lint-commits:
+        uses: dhis2/workflows-platform/.github/workflows/lint-commits.yml@generic-flow
+    release:
+        needs: [lint-commits]
+        uses: dhis2/workflows-platform/.github/workflows/release.yml@generic-flow
+        if: '!github.event.push.repository.fork'
+        with:
+          publish_apphub: false
+          publish_github: true
+          skip_deploy_build: false
+        secrets:
+          DHIS2_BOT_APPHUB_TOKEN: ${{ secrets.DHIS2_BOT_APPHUB_TOKEN }}
+          DHIS2_BOT_GITHUB_TOKEN: ${{ secrets.DHIS2_BOT_GITHUB_TOKEN }}
