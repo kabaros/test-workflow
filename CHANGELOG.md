@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/kabaros/test-workflow/compare/v1.0.0...v1.1.0) (2025-04-10)
+
+
+### Features
+
+* fake feature ([3082b33](https://github.com/kabaros/test-workflow/commit/3082b33528a4ea49aea15c573b22baba6f427cb0))
+
 # 1.0.0 (2025-04-10)
 
 
