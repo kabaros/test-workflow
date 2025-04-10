@@ -19,6 +19,13 @@
 
 * create workflow for publishing ([d806c9b](https://github.com/kabaros/test-workflow/commit/d806c9bfd0667617c67dd1d49d5d5c0646a62d54))
 
+# 1.0.0 (2025-04-10)
+
+
+### Features
+
+* create workflow for publishing ([d806c9b](https://github.com/kabaros/test-workflow/commit/d806c9bfd0667617c67dd1d49d5d5c0646a62d54))
+
 ## [1.1.5](https://github.com/kabaros/test-workflow/compare/v1.1.4...v1.1.5) (2025-04-10)
 
 
