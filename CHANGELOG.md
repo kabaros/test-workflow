@@ -1,3 +1,11 @@
+## [1.1.1-beta.1](https://github.com/kabaros/test-workflow/compare/v1.1.0...v1.1.1-beta.1) (2025-04-10)
+
+
+### Bug Fixes
+
+*  use advanced workflow ([4625321](https://github.com/kabaros/test-workflow/commit/4625321990b859a3d2d9bfea4a672de1b9dddab1))
+* fix fake bug in my project ([35dccc8](https://github.com/kabaros/test-workflow/commit/35dccc8f468f3d8ef5a0049f202c1e8a33ab458f))
+
 # [1.1.0](https://github.com/kabaros/test-workflow/compare/v1.0.0...v1.1.0) (2025-04-10)
 
 
