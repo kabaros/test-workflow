@@ -1,26 +1,36 @@
-on:
-    push:
-        branches:
-            - main
+name: test-and-release
 
-permissions:
-    contents: read
+on: push
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    # Cancel previous runs if not on a release branch
+    cancel-in-progress: ${{ !contains(fromJSON('["refs/heads/master", "refs/heads/main"]'), github.ref) }}
 
 jobs:
+    lint-commits:
+        uses: dhis2/workflows-platform/.github/workflows/lint-commits.yml@generic-flow
+    # lint:
+    #     uses: dhis2/workflows-platform/.github/workflows/lint.yml@generic-flow
+    # test:
+    #     uses: dhis2/workflows-platform/.github/workflows/test.yml@generic-flow
+    # e2e:
+    #     uses: dhis2/workflows-platform/.github/workflows/legacy-e2e.yml@generic-flow
+    #     # Skips forks and dependabot PRs
+    #     if: '!github.event.push.repository.fork'
+    #     secrets: inherit
+    #     with:
+    #         api_version: 41
     release:
-        runs-on: ubuntu-latest
-        permissions:
-            contents: write
-            pull-requests: write
-        steps:
-            - uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
-            - uses: actions/setup-node@v4
-              with:
-                  node-version: "lts/*"
-                  cache: yarn
-            - run: yarn install --frozen-lockfile
-            - run: npx semantic-release
-              env:
-                  GITHUB_TOKEN: ${{ secrets.DHIS2_BOT_GITHUB_TOKEN }}
+        needs: [lint-commits]
+        uses: dhis2/workflows-platform/.github/workflows/release.yml@generic-flow
+        # Skips forks and dependabot PRs
+        if: '!github.event.push.repository.fork'
+        # secrets: inherit
+        with:
+          publish_apphub: false
+          publish_github: true
+          skip_deploy_build: true
+        secrets:
+          DHIS2_BOT_APPHUB_TOKEN: ${{ secrets.DHIS2_BOT_APPHUB_TOKEN }}
+          DHIS2_BOT_GITHUB_TOKEN: ${{ secrets.DHIS2_BOT_GITHUB_TOKEN }}
