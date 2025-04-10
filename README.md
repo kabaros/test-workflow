@@ -1,6 +1,10 @@
 # Sample workflow for DHIS2 apps
+This project shows an example of how you can setup semantic release on DHIS2 apps, so that the changes are automatically displayed in AppHub.
 
 ## Permissions required
+For the workflow to work, you need to:
+1. Create a GitHub token that has the `content` permission on the repo. This can be done under your profile -> settings -> personal access tokens -> Fine grained tokens.
+1. Copy the token and add it to your project as an action secret. In the example below, we named it `DHIS2_BOT_GITHUB_TOKEN` but you can name it what you like (and update the reference in the workflows below)
 
 ## Simple workflow
 In the simple workflow, we use semantic-release library directly:
