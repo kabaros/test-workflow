@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/kabaros/test-workflow/compare/v1.0.0...v1.0.1) (2025-04-10)
+
+
+### Bug Fixes
+
+* skip deploy to d2-ci ([b7ef928](https://github.com/kabaros/test-workflow/commit/b7ef9288b615262214a6993f4ae74e963865c046))
+
 # 1.0.0 (2025-04-10)
 
 
